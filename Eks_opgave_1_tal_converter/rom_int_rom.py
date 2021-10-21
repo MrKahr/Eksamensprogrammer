@@ -32,7 +32,7 @@ def int_to_rom(x):
         
         print('_'*len(big_roman))
         print(f"{big_roman}{tiny_roman}")
-    
+        
     else:
         print(par_int_rom(x))
     
@@ -50,6 +50,7 @@ def par_rom_int(x):
         while x[:len(rom_num[i])] ==  rom_num[i]:
             value += integers[i]
             x = x[len(rom_num[i]):]
+
     return value
 
 
