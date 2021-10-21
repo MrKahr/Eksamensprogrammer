@@ -29,16 +29,19 @@ def int_to_rom(x):
         
         tiny_roman = par_int_rom(tiny)
         
+        roof = '_'*len(big_roman)
+        print_ready_roman = f"{big_roman}{tiny_roman}"
         
-        print('_'*len(big_roman))
-        print(f"{big_roman}{tiny_roman}")
+        print_it_all = f'''{roof}\n{print_ready_roman}'''
+        
+        return print_it_all
         
     else:
-        print(par_int_rom(x))
+        return par_int_rom(x)
     
 
-int_to_rom(3888888)
-int_to_rom(3888)
+print(int_to_rom(3888888))
+print(int_to_rom(3888))
 
 
 def par_rom_int(x):
@@ -63,14 +66,15 @@ def roman_to_int(x):
         
         number = (big_int * 1000) + tiny_int
         
-        print(format_number(number))
+        return format_number(number)
     
     else:
         number = par_rom_int(x)
-        print(format_number(number))
+        return format_number(number)
+
 
 g = 'MMMDCCCLXXXVIII DCCCLXXXVIII'
 q = 'MMMDCCCLXXXVIII'
 
-roman_to_int(g)
-roman_to_int(q)
+print(roman_to_int(g))
+print(roman_to_int(q))
