@@ -10,7 +10,7 @@ def format_number(number):
     return ready_number
 
 
-    # Function to convert integer to binary
+# Function to convert integer to binary
 # Create an empty list, then take the entered integer and modulus by 2
 # Add the modulus to the list, then use floor division to redefine the entered number
 # Perform until i < 0. Reverse the list, print the list
@@ -124,23 +124,30 @@ def menu():
         # Convert number from system to system based on user input  
         if from_sys == '1' and to_sys == '2': # int to bin
             print(int_to_bin(int(user_number)))
+            
         elif from_sys == '1' and to_sys == '3': # int to rom
             print(int_to_rom(int(user_number)))
+            
         elif from_sys == '2' and to_sys == '1': #bin to int
             print(bin_to_int(user_number))
+            
         elif from_sys == '3' and to_sys == '1': #rom to int
             print(rom_to_int(user_number))
+            
         elif from_sys == '2' and to_sys == '3': # bin to rom
             bin_int = bin_to_int(user_number)
             print(int_to_rom(bin_int)) # rom to bin
+            
         elif from_sys == '3' and to_sys == '2':
             rom_int = rom_to_int(user_number)
             print(int_to_bin(int(rom_int)))
+            
         # User tries to convert from and to the same numerical system
         elif from_sys == to_sys:
             print('You are trying to convert one numerical system to the same. Please try again')
             return
             #menu()
+            
         else:
             print('Invalid input.')
             return 
@@ -150,4 +157,5 @@ def menu():
             print('Invalid input')
             return
             #menu()
+            
 menu()
