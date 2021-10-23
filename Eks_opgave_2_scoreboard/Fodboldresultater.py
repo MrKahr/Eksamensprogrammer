@@ -194,9 +194,9 @@ def pretty(text, spaces): #Formula to format the text from the list
 # First sort alphabetaically, then sort by goal difference, then by points
 # This makes it so that if points are the same, then goal difference matters,
 # and if goal difference is the same, then alphabet matters
-sorted_standings = sorted(standings, key = lambda x : x[0],reverse=False)
-sorted_standings = sorted(sorted_standings, key = lambda x : x[5]-x[6],reverse=True)
-sorted_standings = sorted(sorted_standings, key = lambda x : x[7],reverse=True)
+sorted_standings = sorted(standings, key = lambda x : x[team],reverse=False)
+sorted_standings = sorted(sorted_standings, key = lambda x : x[ttl_gls]-x[ttl_gls_c],reverse=True)
+sorted_standings = sorted(sorted_standings, key = lambda x : x[ttl_p],reverse=True)
 
 
 for item in sorted_standings: #Unmakes standings list, prints each item in list
