@@ -1,7 +1,7 @@
 
 """
 Created on Wed Oct 20 13:20:32 2021
-@author: Hans
+@author: @authors: Mads Andersen, Eric van den Brand, Daniel Hansen, Thor Skatka og Andreas Hansen
 """
 
 
@@ -14,13 +14,12 @@ def format_number(number):
 # Create an empty list, then take the entered integer and modulus by 2
 # Add the modulus to the list, then use floor division to redefine the entered number
 # Perform until i < 0. Reverse the list, print the list
-
-def int_to_bin(i):
-    a=""
-    while i > 0:
-        n = i % 2
+def int_to_bin(x):
+    a = ""
+    while x > 0:
+        n = x % 2
         a += str(n)
-        i = i//2
+        x = x // 2
     z = a[::-1] #Reverse the string
     return z
         
@@ -28,6 +27,7 @@ def int_to_bin(i):
 def par_int_rom(x):
         rom_num = ["M" , "CM" , "D" , "CD" , "C" , "XC" , "L" , "XL" , "X" , "IX" , "V" ,"IV", "I" ]
         integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
+        
         i = 0
         rom_str = ""
         
@@ -43,14 +43,12 @@ def par_int_rom(x):
 def int_to_rom(x):
     if x >= 4000:
         big = x // 1000
-        
         big_roman = par_int_rom(big)
         
-        tiny = x  - big * 1000
-        
+        tiny = x - big * 1000
         tiny_roman = par_int_rom(tiny)
         
-        roof = '_'*len(big_roman)
+        roof = '_' * len(big_roman)
         print_ready_roman = f"{big_roman}{tiny_roman}"
         
         print_it_all = f'''{roof}\n{print_ready_roman}'''
@@ -61,14 +59,14 @@ def int_to_rom(x):
         return par_int_rom(x)
     
 
-def bin_to_int(b):
-    # Make a list of the digits.
-    b = [int(x) for x in str(b)]
-    # Make a "total"
-    t = 0
+def bin_to_int(x):
+    x = [int(x) for x in str(x)] # Make a list of the digits.
+    t = 0 # Make a "total"
+    
     # Multiply t by 2 and add digit for each digit in the list
-    for num in b: 
-        t = 2*t+num
+    for num in x: 
+        t = 2 * t + num
+
     return t
 
 
@@ -89,10 +87,10 @@ def par_rom_int(x):
 #Roman numerals below 4999
 def rom_to_int(x):
     if ' ' in x:
-        a,b = [str(i) for i in x.split(' ')]
+        big_rom,tiny_rom = [str(i) for i in x.split(' ')]
         
-        big_int = par_rom_int(a)
-        tiny_int = par_rom_int(b)
+        big_int = par_rom_int(big_rom)
+        tiny_int = par_rom_int(tiny_rom)
         
         number = (big_int * 1000) + tiny_int
         
