@@ -10,7 +10,6 @@ def format_number(number):
     return ready_number
 
 
-
     # Function to convert integer to binary
 # Create an empty list, then take the entered integer and modulus by 2
 # Add the modulus to the list, then use floor division to redefine the entered number
@@ -72,6 +71,7 @@ def bin_to_int(b):
         t = 2*t+num
     return t
 
+
 #Roman numerals above 4999
 def par_rom_int(x):
     rom_num = ["M" , "CM" , "D" , "CD" , "C" , "XC" , "L" , "XL" , "X" , "IX" , "V" ,"IV", "I" ]
@@ -84,6 +84,7 @@ def par_rom_int(x):
             x = x[len(rom_num[i]):]
 
     return value
+
 
 #Roman numerals below 4999
 def rom_to_int(x):
