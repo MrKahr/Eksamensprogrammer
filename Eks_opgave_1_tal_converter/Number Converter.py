@@ -10,7 +10,7 @@ def format_number(number):
     return ready_number
 
 
-# Function to convert integer to binary
+# ! int_to_bin to convert integer to binary
 # Create an empty list, then take the entered integer and modulus by 2
 # Add the modulus to the list, then use floor division to redefine the entered number
 # Perform until i < 0. Reverse the list, print the list
@@ -24,6 +24,7 @@ def int_to_bin(x):
     return z
         
 
+# ! par_int_rom and int_to_rom convert integers to roman numerals
 def par_int_rom(x):
         rom_num = ["M" , "CM" , "D" , "CD" , "C" , "XC" , "L" , "XL" , "X" , "IX" , "V" ,"IV", "I" ]
         integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
@@ -59,6 +60,7 @@ def int_to_rom(x):
         return par_int_rom(x)
     
 
+# ! bin_to_int converts binary numbers to integers
 def bin_to_int(x):
     x = [int(x) for x in str(x)] # Make a list of the digits.
     t = 0 # Make a "total"
@@ -70,7 +72,7 @@ def bin_to_int(x):
     return t
 
 
-#Roman numerals above 4999
+# ! par_rom_int and rom_to_int convert roman numerals to integers
 def par_rom_int(x):
     rom_num = ["M" , "CM" , "D" , "CD" , "C" , "XC" , "L" , "XL" , "X" , "IX" , "V" ,"IV", "I" ]
     integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
@@ -84,7 +86,6 @@ def par_rom_int(x):
     return value
 
 
-#Roman numerals below 4999
 def rom_to_int(x):
     if ' ' in x:
         big_rom,tiny_rom = [str(i) for i in x.split(' ')]
@@ -104,13 +105,15 @@ def rom_to_int(x):
 # Menu function is defined
 def menu():
     try:
-        # Ask user for input    
+        # Ask user for input
         from_sys = input('''Please choose your number system
         #1. Decimal
         #2. Binary
         #3. Roman
         --->: ''')
-        user_number = input('''Please enter your number 
+        
+        user_number = input('''Please enter your number (if its a roman numeral of 4000 
+        and above, please type a space after the part that needs to be multiple by 1000): 
         --->: ''')
 
         to_sys = input('''Please choose the numerical system you want to convert to
