@@ -8,6 +8,7 @@ Beskrivelse:
 """
 
 
+# ! integer formatting function
 def format_number(number):
     # Formates number with , for added readability
     ready_number = '{:,}'.format(number)
@@ -123,7 +124,7 @@ def rom_to_int(x):
         return format_number(number)
 
 
-# Menu function is defined
+# ! Menu function is defined
 def menu():
     try:
         # Ask user for input
