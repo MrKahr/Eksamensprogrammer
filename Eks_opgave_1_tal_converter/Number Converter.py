@@ -111,6 +111,7 @@ def menu():
         #1. Decimal
         #2. Binary
         #3. Roman
+        #4. Terminate Program
         --->: ''')
         
         user_number = input('''Please enter your number (if its a roman numeral of 4000 
@@ -147,17 +148,17 @@ def menu():
         # User tries to convert from and to the same numerical system
         elif from_sys == to_sys:
             print('You are trying to convert one numerical system to the same. Please try again')
-            return
-            #menu()
-            
-        else:
-            print('Invalid input.')
-            return 
-            #menu()
+            menu()
         
-    except:    
-            print('Invalid input')
+        elif from_sys == '4': # Terminates program
             return
-            #menu()
+            
+        else: # Loops for invalid input
+            print('Invalid input.')
+            menu()
+        
+    except: # Loops for invalid input
+            print('Invalid input')
+            menu()
             
 menu()
