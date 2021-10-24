@@ -68,8 +68,9 @@ def bin_to_int(x):
     # Multiply t by 2 and add digit for each digit in the list
     for num in x: 
         t = 2 * t + num
-
-    return t
+    number = format_number(t)
+    
+    return number
 
 
 # ! par_rom_int and rom_to_int convert roman numerals to integers
