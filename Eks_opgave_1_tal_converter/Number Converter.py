@@ -1,15 +1,20 @@
 
 '''
-Created on Wed Oct 20 13:20:32 2021
+Link til github:
+https://github.com/MrKahr/Eksamensprogrammer
+
+Anden eksamens opgave i IPD: Number converter.
 
 @authors: Mads Andersen, Eric van den Brand, Daniel Hansen, Thor Skatka og Andreas Hansen
 
 Beskrivelse: Programmet converterer bruger defineret tal, 
 blandt binære tal, romer tal og 10 tals systemet.
+
+P.S.: Navn ved afsnit indikerer afsnittetes hovedforfatter.
 '''
 
 
-# ! integer formatting function
+# ! integer formatting function (Eric)
 def format_number(number):
     # Formates number with , for added readability
     ready_number = '{:,}'.format(number)
@@ -17,7 +22,7 @@ def format_number(number):
     return ready_number
 
 
-# ! int_to_bin to convert integer to binary
+# ! int_to_bin to convert integer to binary (Daniel)
 def int_to_bin(x):
     # Create an empty string, then take the entered integer and modulus by 2
     a = ''
@@ -34,7 +39,7 @@ def int_to_bin(x):
     return z
         
 
-# ! par_int_rom and int_to_rom convert integers to roman numerals
+# ! par_int_rom and int_to_rom convert integers to roman numerals (Andreas, Eric og Thor)
 def par_int_rom(x):
     rom_num = ['M' , 'CM' , 'D' , 'CD' , 'C' , 'XC' , 'L' , 'XL' , 'X' , 'IX' , 'V' ,'IV', 'I' ]
     integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
@@ -75,7 +80,7 @@ def int_to_rom(x):
         return par_int_rom(x)
     
 
-# ! bin_to_int converts binary numbers to integers
+# ! bin_to_int converts binary numbers to integers (Daniel)
 def bin_to_int(x):
     x = [int(x) for x in str(x)] # Make a list of the digits.
     t = 0 # Make a 'total'
@@ -89,7 +94,7 @@ def bin_to_int(x):
     return number
 
 
-# ! par_rom_int and rom_to_int convert roman numerals to integers
+# ! par_rom_int and rom_to_int convert roman numerals to integers (Eric og Thor)
 def par_rom_int(x):
     rom_num = ['M' , 'CM' , 'D' , 'CD' , 'C' , 'XC' , 'L' , 'XL' , 'X' , 'IX' , 'V' ,'IV', 'I' ]
     integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
@@ -128,7 +133,7 @@ def rom_to_int(x):
         return format_number(number)
 
 
-# ! Menu function is defined
+# ! Menu function is defined (Andreas og Mads)
 def menu():
     try:
         # Ask user for input
