@@ -1,12 +1,12 @@
 
-"""
+'''
 Created on Wed Oct 20 13:20:32 2021
 
 @authors: Mads Andersen, Eric van den Brand, Daniel Hansen, Thor Skatka og Andreas Hansen
 
 Beskrivelse: Programmet converterer bruger defineret tal, 
 blandt binære tal, romer tal og 10 tals systemet.
-"""
+'''
 
 
 # ! integer formatting function
@@ -20,7 +20,7 @@ def format_number(number):
 # ! int_to_bin to convert integer to binary
 def int_to_bin(x):
     # Create an empty string, then take the entered integer and modulus by 2
-    a = ""
+    a = ''
     
     # Add the modulus to the string, then use floor division to redefine the entered number
     # Perform until x = 0. 
@@ -36,11 +36,11 @@ def int_to_bin(x):
 
 # ! par_int_rom and int_to_rom convert integers to roman numerals
 def par_int_rom(x):
-    rom_num = ["M" , "CM" , "D" , "CD" , "C" , "XC" , "L" , "XL" , "X" , "IX" , "V" ,"IV", "I" ]
+    rom_num = ['M' , 'CM' , 'D' , 'CD' , 'C' , 'XC' , 'L' , 'XL' , 'X' , 'IX' , 'V' ,'IV', 'I' ]
     integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
     
     i = 0
-    rom_str = "" # Creates en empty string
+    rom_str = '' # Creates en empty string
     
     # If x // integers[i] > 0, it adds the roman numeral to rom_str and subtracts integers[i] form x
     # When x // inegers[i] > 0  not anymore, then it repeats for integers[i+1], until end of integers
@@ -64,7 +64,7 @@ def int_to_rom(x):
         tiny_rom = par_int_rom(tiny)
         
         roof = '_' * len(big_rom) # roof is then made in length of big_rom
-        print_ready_rom = f"{big_rom}{tiny_rom}" # big_rom and tiny_rom are added together
+        print_ready_rom = f'{big_rom}{tiny_rom}' # big_rom and tiny_rom are added together
         
         # And the roman numeral gets printed as one big multiline string
         print_it_all = f'''{roof}\n{print_ready_rom}'''
@@ -78,7 +78,7 @@ def int_to_rom(x):
 # ! bin_to_int converts binary numbers to integers
 def bin_to_int(x):
     x = [int(x) for x in str(x)] # Make a list of the digits.
-    t = 0 # Make a "total"
+    t = 0 # Make a 'total'
     
     # Multiply t by 2 and add digit for each digit in the list
     for num in x: 
@@ -91,7 +91,7 @@ def bin_to_int(x):
 
 # ! par_rom_int and rom_to_int convert roman numerals to integers
 def par_rom_int(x):
-    rom_num = ["M" , "CM" , "D" , "CD" , "C" , "XC" , "L" , "XL" , "X" , "IX" , "V" ,"IV", "I" ]
+    rom_num = ['M' , 'CM' , 'D' , 'CD' , 'C' , 'XC' , 'L' , 'XL' , 'X' , 'IX' , 'V' ,'IV', 'I' ]
     integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
     
     value = 0
