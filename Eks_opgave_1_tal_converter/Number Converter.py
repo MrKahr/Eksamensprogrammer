@@ -48,6 +48,7 @@ def par_int_rom(x):
         while (x // integers[i]) > 0:
             rom_str += rom_num[i]
             x -= integers[i]
+            
         i+=1
     
     return rom_str # It then returns rom_str
@@ -82,6 +83,7 @@ def bin_to_int(x):
     # Multiply t by 2 and add digit for each digit in the list
     for num in x: 
         t = 2 * t + num
+        
     number = format_number(t)
     
     return number
@@ -101,6 +103,7 @@ def par_rom_int(x):
     for i in range(len(rom_num)):
         while x[:len(rom_num[i])] ==  rom_num[i]:
             value += integers[i]
+            
             x = x[len(rom_num[i]):]
 
     return value
@@ -138,6 +141,7 @@ def menu():
         
         if from_sys == '4': # Terminates program
             print('You terminated the program')
+            
             return
         
         user_number = input('''Please enter your number (if its a roman numeral of 4000 
@@ -165,23 +169,28 @@ def menu():
             
         elif from_sys == '2' and to_sys == '3': # bin to rom
             bin_int = bin_to_int(user_number)
+            
             print(int_to_rom(bin_int)) # int to rom
             
         elif from_sys == '3' and to_sys == '2': # rom to bin
             rom_int = rom_to_int(user_number)
+            
             print(int_to_bin(int(rom_int))) # int to bin
             
         # User tries to convert from and to the same numerical system
         elif from_sys == to_sys:
             print('You are trying to convert one numerical system to the same. Please try again')
+            
             menu()
             
         else: # Loops for invalid input
             print('Invalid input.')
+            
             menu()
         
     except: # Loops for invalid input
             print('Invalid input')
+            
             menu()
 
 
