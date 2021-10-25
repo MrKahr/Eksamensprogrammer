@@ -2,9 +2,10 @@
 """
 Created on Wed Oct 20 13:20:32 2021
 
-@author: @authors: Mads Andersen, Eric van den Brand, Daniel Hansen, Thor Skatka og Andreas Hansen
+@authors: Mads Andersen, Eric van den Brand, Daniel Hansen, Thor Skatka og Andreas Hansen
 
-Beskrivelse: 
+Beskrivelse: Programmet converterer bruger defineret tal, 
+blandt binære tal, romer tal og 10 tals systemet.
 """
 
 
