@@ -17,6 +17,7 @@ P.S.: Navn ved afsnit indikerer afsnittetes hovedforfatter.
 # ! integer formatting function (Eric)
 def format_number(number):
     # Formates number with , for added readability
+    # f. eks.: 1000000 --> 1,000,000
     ready_number = '{:,}'.format(number)
     
     return ready_number
@@ -28,7 +29,7 @@ def int_to_bin(x):
     a = ''
     
     # Add the modulus to the string, then use floor division to redefine the entered number
-    # Perform until x = 0. 
+    # Perform until x == 0. 
     while x > 0:
         n = x % 2
         a += str(n)
@@ -189,12 +190,12 @@ def menu():
             menu()
             
         else: # Loops for invalid input
-            print('Invalid input.')
+            print('Invalid input: from_sys or to_sys error')
             
             menu()
         
     except: # Loops for invalid input
-            print('Invalid input')
+            print('Invalid input: user_number error')
             
             menu()
 
