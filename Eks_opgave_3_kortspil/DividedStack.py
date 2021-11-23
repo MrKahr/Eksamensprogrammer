@@ -170,7 +170,6 @@ class KrigTheGame:
         self.pot = copy.deepcopy(Deck())
         print(f'Table: {self.table}', end='\n\n')
         print(f'The highest card is {highest}', end = '\n\n')
-        #print(h_index)
         print(f'Player {self.players_at_table[h_index]} has won the round!', end='\n\n')
        
         return h_index
