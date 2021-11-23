@@ -24,11 +24,6 @@ class Card:
         return (self.rank,self.suit)<(other.rank,other.suit)
 
 
-suit =      {1: 'Clubs',
-             2: 'Diamonds',
-             3: 'Hearts',
-             4: 'Spades'}
-
 rank =      {2:2,
              3:3,
              4:4,
@@ -89,7 +84,7 @@ class Player:
             if len(self.hand.deck) == 0:
                 self.reshuffle()
             return self.hand.deal(1)
-        else:     
+        else: 
             return False, f'Player {self.name} is no longer playing'
     
     # * Vital status for given player
@@ -101,17 +96,16 @@ class Player:
             return True
     
     def reshuffle(self):
-        self.__add__(self.hand,self.discard)
-        self.discard = []
+        self.hand += self.discard
+        self.discard = copy.deepcopy(Deck())
         
     def __str__(self):
         return self.name
-    
-
+        
 # ! Defines the game 'krig'
 class KrigTheGame:
     # * Initiate KrigTheGame
-    def __init__(self, player_count=2, round_cap=10, deck_count=1):
+    def __init__(self, player_count=10, round_cap=10, deck_count=1):
         self.round = 1 # Starting round
         self.round_cap = round_cap # Maximum amount of rounds
         
@@ -168,16 +162,15 @@ class KrigTheGame:
         highest = Card(suit = "", rank = 0)
         h_index = 0
         for i in range(len(self.table.deck)):
-            if highest < self.table.deck[i][0]:
-                highest = self.table.deck[i][0]
+            #print((self.table.deck[i]))
+            if highest < self.table.deck[i]:
+                highest = self.table.deck[i]
                 h_index = i
         self.pot = copy.deepcopy(Deck())
-        for card in self.table.deck:
-            print(card[0], end= ' ')
-        print('')
-        print(highest)
+        print(f'Table: {self.table}', end='\n\n')
+        print(f'The highest card is {highest}', end = '\n\n')
         #print(h_index)
-        #print(f'Player {h_index} has won the game!')
+        print(f'Player {h_index} has won the round!', end='\n\n')
         
         return h_index
     
@@ -186,13 +179,19 @@ class KrigTheGame:
         i = self.who_wins()
         winner = self.players_at_table[i]
 
-        winner.discard += self.table + self.pot
+        winner.discard += self.table
+
         self.table = copy.deepcopy(Deck())
 
     def makeAllPlay(self):
+        active_players = []
+        for i in range(len(self.players_at_table)):
+            player = self.players_at_table[i]
+            if player.still_playing():
+                active_players.append(player)
+        self.players_at_table = copy.deepcopy(active_players)
         for player in self.players_at_table:
-            card = player.play_card()
-
+            card = player.play_card()[0]
             self.table += Deck(deck = [card])
 
     def print_hand(self):
@@ -200,14 +199,16 @@ class KrigTheGame:
             print(player.hand, end='\n')
             print(len(player.hand.deck))
             print(len(player.discard.deck),end ='\n\n')
+    
+    def play_game(self):
+        self.div_stack()
+        for i in range(11):
+            print(f'Round {i}: ', end='\n')
+            print('The players are:')
+            for player in self.players_at_table[:-1]:
+                print(f'{player} and ', end ='')
+            print(self.players_at_table[-1], end='\n\n')
+            self.runRound()
 
 krig = KrigTheGame()
-krig.div_stack()
-krig.runRound()
-#krig.print_hand()
-krig.runRound()
-#krig.print_hand()
-krig.runRound()
-#krig.print_hand()
-krig.runRound()
-#krig.print_hand()
+krig.play_game()
