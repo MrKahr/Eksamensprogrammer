@@ -212,33 +212,35 @@ class KrigTheGame:
     def play_game(self):
         self.div_stack()
         for i in range(self.round_cap):
-            print(f'\nRound {i}: ', end='\n')
-            print('The players are:')
-            for player in self.players_at_table[:-1]:
-                print(f'{player} and ', end ='')
-            print(self.players_at_table[-1], end='\n\n')
-            self.runRound()
-        win_points = 0
-        winner_index_list = []
-        for i in range(len(self.players_at_table)):
-            player = self.players_at_table[i]
-            standings = len(player.hand.deck) + len(player.discard.deck)
-            if standings > win_points:
-                win_points = standings
-                winner_index = i
-                draw = False
-                winner_index_list = [i]
-            elif standings == win_points:
-                draw = True
-                winner_index_list.append(i)
-        if draw:
-            print('\nThe game is a draw!')
-            for index in winner_index_list[:-1]:
-                print(f'{self.players_at_table[index]} and', end = ' ')
-            print(self.players_at_table[winner_index_list[-1]])
-        else:
-            print(f'\nThe winner is {self.players_at_table[winner_index]}')
-
+            if len(self.players_at_table) > 1:
+                print(f'\nRound {i}: ', end='\n')
+                print('The players are:')
+                for player in self.players_at_table[:-1]:
+                    print(f'{player} and ', end ='')
+                print(self.players_at_table[-1], end='\n\n')
+                self.runRound()
+                win_points = 0
+                winner_index_list = []
+                for i in range(len(self.players_at_table)):
+                    player = self.players_at_table[i]
+                    standings = len(player.hand.deck) + len(player.discard.deck)
+                    if standings > win_points:
+                        win_points = standings
+                        winner_index = i
+                        draw = False
+                        winner_index_list = [i]
+                    elif standings == win_points:
+                        draw = True
+                        winner_index_list.append(i)
+                if draw:
+                    print('\nThe game is a draw!')
+                    for index in winner_index_list[:-1]:
+                        print(f'{self.players_at_table[index]} and', end = ' ')
+                    print(self.players_at_table[winner_index_list[-1]])
+                else:
+                    print(f'\nThe winner is {self.players_at_table[winner_index]}')
+            else:
+                break
 
 krig = KrigTheGame(round_cap = 10)
 krig.play_game()
