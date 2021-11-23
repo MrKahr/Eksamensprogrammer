@@ -18,7 +18,7 @@ class Card:
         if self.rank == 0:
             return ""
         else:
-            return str(rank[self.rank]) + " of " + self.suit + ' '
+            return str(rank[self.rank]) + " of " + self.suit
         
     def __lt__(self,other):
         return (self.rank,self.suit)<(other.rank,other.suit)
@@ -110,7 +110,7 @@ class KrigTheGame:
         self.round = 1 # Starting round
         self.round_cap = round_cap # Maximum amount of rounds
         
-        self.player_names = ['Hans', 'Bonk', 'Paul', 'Eric', 'Tror', 'At', 'Du', 'Er', 'Til', 'Men'] # Availible player names
+        self.player_names = ['Snake Eyes', 'Evil Eric', 'Dangerous Daniel', 'Anonymous Andreas', 'Mad Mads', 'Thieving Thor', 'Angry Adam', 'Divine Dat', 'Troublesome Tobias', 'Nefarious Nikolaj', 'Killer Krisitan', 'Kind Kristian', 'Kingly Kristian', 'Xtreme Xiaoyin', 'Glorious Gianni', 'Lucky Laila', 'Serious Sandra', 'Paitient Peter', 'Tactical Tereza', 'Keen Kristoffer', 'Kinetic Kasper', 'Salty Stefan'] # Availible player names
         self.player_count = player_count # Amount of players
         #self.players = self.players() # Generate players at the table
         #print(self.players)
@@ -131,7 +131,7 @@ class KrigTheGame:
         # Generates card object for all cards in a deck, for all decks
         for deck in range(self.deck_count):
             for i, suit in enumerate(suits):
-                for card in range(2, 15):
+                for card in range(2, 15): 
                     card_stack.append(Card(suit, card))
         return Deck(deck = card_stack)
     
@@ -168,7 +168,10 @@ class KrigTheGame:
                 highest = self.table.deck[i]
                 h_index = i
         self.pot = copy.deepcopy(Deck())
-        print(f'Table: {self.table}', end='\n\n')
+        print('Table:')
+        for card in range(len(self.table.deck[:-1])):
+            print(f'{self.table.deck[card]},', end=' ')
+        print(self.table.deck[-1], end='\n\n')
         print(f'The highest card is {highest}', end = '\n\n')
         print(f'Player {self.players_at_table[h_index]} has won the round!', end='\n\n')
        
@@ -234,7 +237,8 @@ class KrigTheGame:
                 print(f'{self.players_at_table[index]} and', end = ' ')
             print(self.players_at_table[winner_index_list[-1]])
         else:
-            print(f'\nThe winner is {self.players_at_table[winner_index]}')    
+            print(f'\nThe winner is {self.players_at_table[winner_index]}')
+
 
 krig = KrigTheGame(round_cap = 10)
 krig.play_game()
