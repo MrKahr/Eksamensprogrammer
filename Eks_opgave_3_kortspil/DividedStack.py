@@ -170,8 +170,8 @@ class KrigTheGame:
         print(f'Table: {self.table}', end='\n\n')
         print(f'The highest card is {highest}', end = '\n\n')
         #print(h_index)
-        print(f'Player {h_index} has won the round!', end='\n\n')
-        
+        print(f'Player {self.players_at_table[h_index]} has won the round!', end='\n\n')
+       
         return h_index
     
     def runRound(self):
@@ -180,7 +180,13 @@ class KrigTheGame:
         winner = self.players_at_table[i]
 
         winner.discard += self.table
-
+        
+        print('The current standings are:')
+        
+        for player in self.players_at_table:
+            standings = len(player.hand.deck) + len(player.discard.deck)
+            print(f'{player}: {standings}')
+            standings = copy.deepcopy(Deck())
         self.table = copy.deepcopy(Deck())
 
     def makeAllPlay(self):
