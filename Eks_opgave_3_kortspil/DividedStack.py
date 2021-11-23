@@ -8,22 +8,27 @@ Created on Mon Nov 22 14:01:02 2021
 import random
 import copy
 
+# Defines what a card is 
 class Card:
     """Definér et kort"""
+    
+    # Assign a rank and a suit to each card
     def __init__(self, suit = "",rank = 0):
         self.suit = suit
         self.rank = rank
-        
+    
+    # Output card rank and suit for user 
     def __str__(self):
         if self.rank == 0:
             return ""
         else:
             return str(rank[self.rank]) + " of " + self.suit + ' '
-        
+    
+    # Compare cards by rank then suit 
     def __lt__(self,other):
         return (self.rank,self.suit)<(other.rank,other.suit)
 
-
+# Create dictionary to make card value possible to print. 
 rank =      {2:2,
              3:3,
              4:4,
@@ -39,30 +44,32 @@ rank =      {2:2,
              14: 'Ace'}
 
 
-# ! Defines what a deck is
+# Defines what a deck is
 class Deck:
-    # * Make dummy deck with stack of cards 
+    
+    # Make dummy deck with stack of cards
     def __init__(self, deck=[]):
         self.deck = deck
         #self.size = size
         
-    # * Shuffle a stack of cards
+    # Shuffle a stack of cards
     def shuffle(self): 
         random.shuffle(self.deck)
         return self.deck
 
-    
+    # Play cards on table and remove from deck
     def deal(self, amount):
         dealt_hand = self.deck[:amount]
         self.deck = self.deck[amount:]
         
         return dealt_hand
     
-    # * Add cards won to deck
+    # Add cards won to deck
     def __add__(self, other):
         self.deck += other.deck
         return self
     
+   # Change type of card in deck to string for every card
     def __str__(self):
         deck = ''
         for card in self.deck:
@@ -70,15 +77,16 @@ class Deck:
         return deck
 
 
-# ! Defines what a player is
+# Defines what a player is
 class Player:
-    # * Initialize Player
+    
+    # Initialize player attributes 
     def __init__(self, name=''):
         self.name = name
         self.hand = copy.deepcopy(Deck())
         self.discard = copy.deepcopy(Deck())
     
-    # * Deals x amount of cards from players hand
+    # Deals x amount of cards from players hand
     def play_card(self):
         if self.still_playing():
             if len(self.hand.deck) == 0:
@@ -87,7 +95,7 @@ class Player:
         else: 
             return False, f'Player {self.name} is no longer playing'
     
-    # * Vital status for given player
+    # Vital status for given player
     def still_playing(self):
         # 0 for dead and 1 for living player
         if len(self.hand.deck) + len(self.discard.deck) == 0:
@@ -95,11 +103,13 @@ class Player:
         else:
             return True
     
+    # 
     def reshuffle(self):
         self.hand += self.discard
         self.hand.shuffle()
         self.discard = copy.deepcopy(Deck())
-        
+    
+    #    
     def __str__(self):
         return self.name
         
