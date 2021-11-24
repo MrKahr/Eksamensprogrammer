@@ -234,6 +234,7 @@ class KrigTheGame:
                         winner_index_list.append(i)
                 if draw:
                     print('\nThe game is a draw!')
+                    print('The winners are:')
                     for index in winner_index_list[:-1]:
                         print(f'{self.players_at_table[index]} and', end = ' ')
                     print(self.players_at_table[winner_index_list[-1]])
