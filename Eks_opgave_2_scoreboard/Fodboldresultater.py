@@ -1,14 +1,8 @@
-
-"""
-Link til github
-https://github.com/MrKahr/Eksamensprogrammer
-"""
-
 '''
+Link til github: https://github.com/MrKahr/Eksamensprogrammer
 Første eksamens opgave i IPD: Sports resultater
 @authors: Mads Andersen, Eric van den Brand, Daniel Hansen, Thor Skatka og Andreas Hansen
-Beskrivelse:
-Programmet tager match data fra en gruppe tekst filer, og ved hjælp af dette laver et sorteret og overskueligt scoreboard. 
+Beskrivelse: Programmet tager match data fra en gruppe tekst filer, og ved hjælp af dette laver et sorteret og overskueligt scoreboard. 
 '''
 
 import io #Package for reading "æ, ø and å"
@@ -23,7 +17,7 @@ g_lost,      ttl_gls  = 4,5
 ttl_gls_c,   ttl_p    = 6,7
 
 
-# ! filling standings with teams and scorecards (Written by: Andreas, Daniel and Thor)
+# ! filling standings with teams and scorecards
 nations_file = 'nations.txt'
 team_file = io.open(nations_file,mode="r",encoding="utf-8") #Open file, read (r) and encoding is UTF-8 (æ, ø, å)
 
@@ -33,6 +27,7 @@ teams = []
 def team_list():
     for item in team_file: #For each country + newline, add to the list
         teams.append(item.rstrip("\n")) #rstrip to strip "\n" from the right side of the string
+    
     return teams
 
 
@@ -48,7 +43,7 @@ team_list() #Add items to nations
 add_team_scorecard(standings) # Adds scorecards to standings
 
 
-# ! Calculation and implimention scores and points in standings (Written by: Eric and Mads)
+# ! Calculation and implimention scores and points in standings
 # Finds index of team in standings
 def find_position_in_standings(standings,this_team):
     for entry in standings:
@@ -140,7 +135,7 @@ def add_standings(standings, l_team, r_team, l_score, r_score):
     return standings
 
 
-# ! Makes list of rounds and matches in them (Written by: Andreas, Daniel and Thor)
+# ! Makes list of rounds and matches in them
 def fb_res(amount_of_rounds):
     for j in range(1,amount_of_rounds+1): # Run the program for every file
         try:
@@ -164,12 +159,12 @@ def fb_res(amount_of_rounds):
                     match_team_list = types[0].split(" - ") # Split the list with nations into items by " - " - Changes an item into more items [Danmark-Skotland] becomes [Danmark,Skotland]
                     match_score_list = types[1].split(" - ") # Split the list of scores into items by " - " - Changes an item into more items [0-2] becomes [0,2]
                     match_type_list.append([match_team_list ,match_score_list]) # Append the new lists
-
+                
                 # Index of variables in match and teams/scores in match
                 teams,scores =    0,1
                 l_team,r_team =   0,1
                 l_score,r_score = 0,1
-
+                
                 for match in match_type_list: # Take values for nations and scores individually
                     l_team_m =  match[teams][l_team] # Values to be extracted to standings
                     r_team_m =  match[teams][r_team] # First index is either country or score, next index is left or right
@@ -177,17 +172,17 @@ def fb_res(amount_of_rounds):
                     r_score_m = int(match[scores][r_score])
                     
                     add_standings(standings, l_team_m, r_team_m, l_score_m, r_score_m)
-                
+            
             except:
                 print(f'SyntaxError: round{j}.txt is formatted incorrectly.'+
-                  f'\nStatus unknown for subsequent {amount_of_rounds - j} rounds')
+                    f'\nStatus unknown for subsequent {amount_of_rounds - j} rounds')
         
         except:
             print(f'TypeError: round{j}.txt does not exist.'+
-                  f'\nStatus unknown for subsequent {amount_of_rounds - j} rounds')
+                    f'\nStatus unknown for subsequent {amount_of_rounds - j} rounds')
 
 
-# ! Format the text from the list (Written by: Andreas, Daniel and Thor)
+# ! Format the text from the list
 def pretty(text, spaces, r_align = True): #Formula to format the text from the list
     text = str(text) #Ensure type is str
     
@@ -198,7 +193,7 @@ def pretty(text, spaces, r_align = True): #Formula to format the text from the l
         return text + ((spaces-len(text))*" ")
 
 
-# ! make and print scoreboard (Written by: Andreas, Daniel and Thor)
+# ! make and print scoreboard
 def scoreboard(amount_of_rounds = 6):
     fb_res(amount_of_rounds)
     
@@ -206,15 +201,14 @@ def scoreboard(amount_of_rounds = 6):
     # Lambda is an anonymous function, takes x as and argument and x[7] as an expression
     # "key=" creates a new list to sort over - Lambda defines which elements are in the new list
     # Lambda creates a functions, runs it and destroys it again
-
+    
     # First sort alphabetaically, then sort by goal difference, then by points
     # This makes it so that if points are the same, then goal difference matters,
     # and if goal difference is the same, then alphabet matters
     sorted_standings = sorted(standings, key = lambda x : x[team],reverse=False)
     sorted_standings = sorted(sorted_standings, key = lambda x : x[ttl_gls]-x[ttl_gls_c],reverse=True)
     sorted_standings = sorted(sorted_standings, key = lambda x : x[ttl_p],reverse=True)
-
-
+    
     for item in sorted_standings: #Unmakes standings list, prints each item in list
         #For every list in standings, run the function
         team_t    = pretty(item[team]     ,10,r_align = False) 
@@ -226,7 +220,7 @@ def scoreboard(amount_of_rounds = 6):
         g_against = pretty(item[ttl_gls_c],3)
         points    = pretty(item[ttl_p]    ,3)
         result    = team_t + plays + wins + draws + losses + goals + " -" + g_against + points
-
+        
         print(result)
 
 

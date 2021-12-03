@@ -1,23 +1,15 @@
-
 '''
-Link til github:
-https://github.com/MrKahr/Eksamensprogrammer
-
+Link til github: https://github.com/MrKahr/Eksamensprogrammer
 Anden eksamens opgave i IPD: Number converter.
-
 @authors: Mads Andersen, Eric van den Brand, Daniel Hansen, Thor Skatka og Andreas Hansen
-
-Beskrivelse: Programmet converterer bruger defineret tal, 
-blandt binære tal, romer tal og 10 tals systemet.
-
-P.S.: Navn ved afsnit indikerer afsnittetes hovedforfatter.
+Beskrivelse: Programmet converterer bruger defineret tal, blandt binære tal, romer tal og 10 tals systemet.
 '''
 
 rom_num = ['M' , 'CM' , 'D' , 'CD' , 'C' , 'XC' , 'L' , 'XL' , 'X' , 'IX' , 'V' ,'IV', 'I' ]
 integers = [1000 , 900 , 500 , 400 , 100 , 90 , 50 , 40 , 10 , 9 , 5 , 4 , 1]
 
 
-# ! integer formatting function (Eric)
+# ! integer formatting function
 def format_number(number):
     # Formates number with , for added readability
     # f. eks.: 1000000 --> 1,000,000
@@ -26,7 +18,7 @@ def format_number(number):
     return ready_number
 
 
-# ! int_to_bin to convert integer to binary (Daniel)
+# ! int_to_bin to convert integer to binary
 def int_to_bin(x):
     # Create an empty string, then take the entered integer and modulus by 2
     a = ''
@@ -43,7 +35,7 @@ def int_to_bin(x):
     return z
         
 
-# ! par_int_rom and int_to_rom convert integers to roman numerals (Andreas, Eric og Thor)
+# ! par_int_rom and int_to_rom convert integers to roman numerals
 def par_int_rom(x):
     i = 0
     rom_str = '' # Creates en empty string
@@ -59,7 +51,7 @@ def par_int_rom(x):
     
     return rom_str # It then returns rom_str
 
- 
+
 def int_to_rom(x):
     if x >= 4000: # If x >= 4000, it splits x in two parts:
         big = x // 1000 # Big part, wich are the roman numerals that need to be multiplied by 1000
@@ -76,12 +68,12 @@ def int_to_rom(x):
         print_it_all = f'''{roof}\n{print_ready_rom}'''
         
         return print_it_all
-        
+    
     else: # If x < 4000 it just returns par_int_rom(x)
         return par_int_rom(x)
-    
 
-# ! bin_to_int converts binary numbers to integers (Daniel)
+
+# ! bin_to_int converts binary numbers to integers
 def bin_to_int(x):
     x = [int(x) for x in str(x)] # Make a list of the digits.
     t = 0 # Make a 'total'
@@ -95,7 +87,7 @@ def bin_to_int(x):
     return number
 
 
-# ! par_rom_int and rom_to_int convert roman numerals to integers (Eric og Thor)
+# ! par_rom_int and rom_to_int convert roman numerals to integers
 def par_rom_int(x):
     value = 0
     
@@ -108,7 +100,7 @@ def par_rom_int(x):
             value += integers[i]
             
             x = x[len(rom_num[i]):]
-
+    
     return value
 
 
@@ -128,10 +120,11 @@ def rom_to_int(x):
     
     else: # If x has no ' ', run par_rom_int and return result
         number = par_rom_int(x)
+        
         return format_number(number)
 
 
-# ! Menu function is defined (Andreas og Mads)
+# ! Menu function is defined
 def menu():
     try:
         # Ask user for input
@@ -179,37 +172,37 @@ def menu():
         # Convert number from system to system based on user input  
         if from_sys == '1' and to_sys == '2': # int to bin
             print(int_to_bin(user_number))
-            
+        
         elif from_sys == '1' and to_sys == '3': # int to rom
             print(int_to_rom(user_number))
-            
+        
         elif from_sys == '2' and to_sys == '1': # bin to int
             print(bin_to_int(user_number))
-            
+        
         elif from_sys == '3' and to_sys == '1': # rom to int
             print(rom_to_int(user_number))
-            
+        
         elif from_sys == '2' and to_sys == '3': # bin to rom
             bin_int = bin_to_int(user_number)
             
             print(int_to_rom(bin_int)) # int to rom
-            
+        
         elif from_sys == '3' and to_sys == '2': # rom to bin
             rom_int = rom_to_int(user_number)
             
             print(int_to_bin(rom_int)) # int to bin
-            
+        
         # User tries to convert from and to the same numerical system
         elif from_sys == to_sys:
             print('You are trying to convert one numerical system to the same. Please try again')
             
             menu()
-            
+        
         else: # Loops for invalid input
             print('Something unexpected went wrong')
             
             menu()
-        
+    
     except: # Loops for invalid input
             print('Invalid input')
             
